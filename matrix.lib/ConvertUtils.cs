@@ -1,5 +1,7 @@
 ﻿namespace matrix.lib;
 
+public record struct Edge(int From, int To);
+
 public class ConvertUtils
 {
     public static Dictionary<int, string> BuildTermsMap(Dictionary<string, List<string>> left, Dictionary<string, List<string>> right)
@@ -39,5 +41,26 @@ public class ConvertUtils
                totalDifference += Math.Abs(leftMatrix[i][j] - rightMatrix[i][j]);
         return totalDifference;
     }
-   
+    
+    public static List<Edge> GetGraphEdges(Dictionary<int, HashSet<int>> encodedAdjacencyList) =>
+        encodedAdjacencyList.SelectMany(x => x.Value.Select(y => new Edge(x.Key, y))).ToList();
+
+    public static double CalculateJaccardIndex(IEnumerable<Edge> edges1, IEnumerable<Edge> edges2)
+    {
+        var set1 = new HashSet<Edge>(edges1);
+        var set2 = new HashSet<Edge>(edges2);
+
+        var intersection = new HashSet<Edge>(set1);
+        intersection.IntersectWith(set2);
+
+        var union = new HashSet<Edge>(set1);
+        union.UnionWith(set2);
+
+        if (union.Count == 0)
+        {
+            return 1; // Both graphs are empty
+        }
+
+        return (double)intersection.Count / union.Count;
+    }    
 }
