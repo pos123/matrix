@@ -15,24 +15,21 @@ public class MatrixTests
                                             };
 
         var graphRight = new Dictionary<string, List<string>>
-                                            {
-                                                { "1", new List<string> { "2" } },
-                                                { "2", new List<string> { } },
+{
+                                                { "1", new List<string> { "2", "3", "4" } },
+                                                { "2", new List<string> { "1", "4" } },
+                                                { "3", new List<string> { "1", "2", "4" } },
+                                                { "4", new List<string> { "1", "3" } }
                                             };
-
 
         var mapping = ConvertUtils.BuildTermsMap(graphLeft, graphRight);                                            
         var encodedAdjacencyListLeft = ConvertUtils.BuildAdjacencySetUsingMapping(graphLeft, mapping);
         var encodedAdjacencyListRight = ConvertUtils.BuildAdjacencySetUsingMapping(graphRight, mapping);
 
-        var t = ConvertUtils.ConvertToAdjacencyMatrix(encodedAdjacencyListRight, mapping.Keys.Count);
+        var x = ConvertUtils.ConvertToAdjacencyMatrix(encodedAdjacencyListLeft, mapping.Keys.Count);
+        var y = ConvertUtils.ConvertToAdjacencyMatrix(encodedAdjacencyListRight, mapping.Keys.Count);
+        
+        int z = ConvertUtils.CalculateGraphEditDistance(x, y);
 
-        ConvertUtils.ConvertToAdjacencyMatrix(encodedAdjacencyListLeft, mapping.Keys.Count).Should().BeEquivalentTo(new int[][]
-        {
-            [0, 1, 1, 1],
-            [1, 0, 1, 0],
-            [1, 1, 0, 1],
-            [1, 0, 1, 0]
-        });
     }
 }

@@ -30,5 +30,14 @@ public class ConvertUtils
                 .ToArray();
         return matrix;
     }
+
+    public static int CalculateGraphEditDistance(int[][] leftMatrix, int[][] rightMatrix)
+    {
+        int totalDifference = 0;
+        for (int i = 0; i < leftMatrix.Length; i++)
+            for (int j = 0; j < leftMatrix[i].Length; j++)
+               totalDifference += Math.Abs(leftMatrix[i][j] - rightMatrix[i][j]);
+        return totalDifference;
+    }
    
 }
