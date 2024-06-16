@@ -22,8 +22,8 @@ public class MatrixTests
 
 
         var mapping = ConvertUtils.BuildTermsMap(graphLeft, graphRight);                                            
-        var encodedAdjacencyListLeft = ConvertUtils.BuildAdjacencyListUsingMapping(graphLeft, mapping);
-        var encodedAdjacencyListRight = ConvertUtils.BuildAdjacencyListUsingMapping(graphRight, mapping);
+        var encodedAdjacencyListLeft = ConvertUtils.BuildAdjacencySetUsingMapping(graphLeft, mapping);
+        var encodedAdjacencyListRight = ConvertUtils.BuildAdjacencySetUsingMapping(graphRight, mapping);
 
         var t = ConvertUtils.ConvertToAdjacencyMatrix(encodedAdjacencyListRight, mapping.Keys.Count);
 
