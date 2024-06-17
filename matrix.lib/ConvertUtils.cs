@@ -52,15 +52,9 @@ public class ConvertUtils
 
         var intersection = new HashSet<Edge>(set1);
         intersection.IntersectWith(set2);
-
         var union = new HashSet<Edge>(set1);
         union.UnionWith(set2);
 
-        if (union.Count == 0)
-        {
-            return 1; // Both graphs are empty
-        }
-
-        return (double)intersection.Count / union.Count;
+        return (union.Count == 0) ? 1 : (double)intersection.Count / union.Count;
     }    
 }

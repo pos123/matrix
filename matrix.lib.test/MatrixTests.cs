@@ -16,7 +16,7 @@ public class MatrixTests
 
         var graphRight = new Dictionary<string, List<string>>
 {
-                                                { "1", new List<string> { "2", "3", "4" } },
+                                                { "1", new List<string> { "2", "3" } },
                                                 { "2", new List<string> { "1", "3" } },
                                                 { "3", new List<string> { "1", "2", "4" } },
                                                 { "4", new List<string> { "1", "3"} }
